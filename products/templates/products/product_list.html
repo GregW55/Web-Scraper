@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 3000px; /* Container width for more columns */
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #search-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #search-input {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        #search-btn {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Gap between product boxes */
+            list-style-type: none;
+            padding: 0;
+            justify-content: center; /* Center the grid content */
+        }
+
+        .product-box {
+            border: 1px solid #000;
+            padding: 20px; /* Padding for product boxes */
+            border-radius: 5px;
+            background-color: #fff;
+            width: calc(30% - 20px); /* The width */
+            height: 500px; /* The height */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .product-box img {
+            max-width: 150px; /* Adjusted image size */
+            max-height: 150px; /* Adjusted image size */
+            margin-bottom: 10px;
+        }
+
+        .product-box strong {
+            font-size: 18px; /* Font size for product name */
+            margin-bottom: 10px;
+        }
+
+        .product-box .price {
+            font-size: 16px; /* Font size for product price */
+            color: #b12704;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Product List</h1>
+    <div id="sort-options">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="date-asc">Date: Old to New</option>
+            <option value="date-desc">Date: New to Old</option>
+        </select>
+    </div>
+    <form id="search-form" action="/products/" method="get">
+        <input type="text" id="search-input" name="query" placeholder="Search for products...">
+        <button type="submit" id="search-btn">Search</button>
+    </form>
+    <ul class="product-grid">
+        {% for product in products %}
+            <li class="product-box">
+                <img src="{{ product.image_url }}" alt="{{ product.product_name }}">
+                <img src="{% if product.source == 'Amazon' %}amazon_logo.png{% elif product.source == 'Ebay' %}ebay_logo.png{% elif product.source == 'Newegg' %}newegg_logo.png{% elif product.source == 'Target' %}target_logo.png{% elif product.source == 'BestBuy' %}bestbuy_logo.png{% endif %}" alt="{{ product.source }} Logo">
+                <strong><a href="{{ product.url }}" target="_blank">{{ product.product_name }}</a></strong>
+                <div class="price">${{ product.price }}</div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
