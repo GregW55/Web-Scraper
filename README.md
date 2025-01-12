@@ -25,7 +25,7 @@ Libraries: aiohttp, asyncio, beautifulsoup4, sqlalchemy, re, logging, Django
 
 Clone the Repository:
 
-git clone https://github.com/gregW55/web-scraper.git
+git clone https://github.com/gregW55/web-scraper
 
 cd price_tracker
 
