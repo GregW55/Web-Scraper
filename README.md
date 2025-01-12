@@ -19,7 +19,7 @@ Provides a web interface for managing and viewing tracked prices.
 
 Python 3.8+
 
-Libraries: aiohttp, asyncio, beautifulsoup4, sqlalchemy, re, logging, Django
+Libraries: aiohttp, asyncio, beautifulsoup4, sqlalchemy, re, logging, Django, Brotli
 
 # Installation
 
@@ -31,7 +31,7 @@ cd price_tracker
 
 # Install Dependencies:
 
-pip install aiohttp beautifulsoup4 sqlalchemy Django
+pip install aiohttp beautifulsoup4 sqlalchemy Django Brotli
 
 # Set Up Django:
 
@@ -51,7 +51,7 @@ python -c "from main import Base, engine; Base.metadata.create_all(engine)"
 
 # Usage
 
-Run the Scraper:
+Run the Scraper with no website:
 
 python main.py
 
@@ -59,7 +59,7 @@ View Database Contents:
 
 python main.py
 
-Run Django Server:
+Run scraper on Django Server:
 
 python manage.py runserver
 
